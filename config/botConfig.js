@@ -44,7 +44,7 @@ const config = {
         // Bot status
         status: {
             type: 'WATCHING', // PLAYING, STREAMING, LISTENING, WATCHING, COMPETING
-            name: 'the inevitable corporate collapse | !ask'
+            name: 'the inevitable corporate collapse | @mention me to chat!'
         }
     },
     

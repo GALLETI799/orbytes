@@ -1,6 +1,11 @@
-// MessageCreate event - Handles incoming messages and command processing
-const { Collection } = require('discord.js');
+// MessageCreate event - Handles mentions for AI chat responses
+const { EmbedBuilder } = require('discord.js');
+const OpenAI = require('openai');
 const logger = require('../utils/logger');
+
+const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY
+});
 
 module.exports = {
     name: 'messageCreate',
@@ -11,77 +16,88 @@ module.exports = {
             // Ignore messages from bots and system messages
             if (message.author.bot || message.system) return;
             
-            // Check if message starts with prefix
-            if (!message.content.startsWith(client.config.prefix)) return;
+            // Check if bot is mentioned
+            if (!message.mentions.has(client.user)) return;
             
-            // Parse command and arguments
-            const args = message.content.slice(client.config.prefix.length).trim().split(/ +/);
-            const commandName = args.shift().toLowerCase();
+            // Get the message content without the mention
+            let content = message.content.replace(`<@${client.user.id}>`, '').trim();
+            if (!content) {
+                content = "Hello! What can I help you with?";
+            }
             
-            // Get command from collection
-            const command = client.commands.get(commandName);
-            if (!command) return;
-            
-            // Log command usage if enabled
+            // Log mention usage if enabled
             if (client.config.settings.logCommands) {
-                logger.info(`Command executed: ${commandName} by ${message.author.tag} in ${message.guild?.name || 'DM'}`);
+                logger.info(`Mention processed: "${content}" by ${message.author.tag} in ${message.guild?.name || 'DM'}`);
             }
             
-            // Handle cooldowns
-            const { cooldowns } = client;
+            // Show typing indicator
+            await message.channel.sendTyping();
             
-            if (!cooldowns.has(command.name)) {
-                cooldowns.set(command.name, new Collection());
-            }
+            // Generate AI response
+            const aiResponse = await generateMentionResponse(content, message.author.username);
             
-            const now = Date.now();
-            const timestamps = cooldowns.get(command.name);
-            const cooldownAmount = (command.cooldown ?? client.config.settings.defaultCooldown / 1000) * 1000;
+            const embed = new EmbedBuilder()
+                .setColor('#4ecdc4')
+                .setTitle('🤖 S.L.O.P CORP AI Assistant')
+                .setDescription(aiResponse)
+                .setFooter({ 
+                    text: `Conversation with ${message.author.tag} | S.L.O.P CORP™ - Powered by Real AI!`, 
+                    iconURL: message.author.displayAvatarURL() 
+                })
+                .setTimestamp();
             
-            if (timestamps.has(message.author.id)) {
-                const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
-                
-                if (now < expirationTime) {
-                    const timeLeft = (expirationTime - now) / 1000;
-                    return message.reply(`⏰ Please wait ${timeLeft.toFixed(1)} more seconds before using \`${command.name}\` again.`);
-                }
-            }
-            
-            timestamps.set(message.author.id, now);
-            setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
-            
-            // Check if command is guild-only and message is in DM
-            if (command.guildOnly && !message.guild) {
-                return message.reply('❌ This command can only be used in servers!');
-            }
-            
-            // Check if user has required permissions
-            if (command.permissions) {
-                const authorPerms = message.channel.permissionsFor(message.author);
-                if (!authorPerms || !authorPerms.has(command.permissions)) {
-                    return message.reply('❌ You don\'t have permission to use this command!');
-                }
-            }
-            
-            // Check if bot has required permissions
-            if (command.botPermissions) {
-                const botPerms = message.channel.permissionsFor(client.user);
-                if (!botPerms || !botPerms.has(command.botPermissions)) {
-                    return message.reply('❌ I don\'t have the required permissions to execute this command!');
-                }
-            }
-            
-            // Execute the command
-            await command.execute(message, args, client);
+            await message.reply({ embeds: [embed] });
             
         } catch (error) {
-            logger.error(`Error executing command ${message.content}:`, error);
+            logger.error(`Error processing mention:`, error);
             
             try {
-                await message.reply('❌ There was an error executing this command. Please try again later.');
+                await message.reply('🤖 My circuits just experienced what we call a "major malfunction." Even our error handling has errors at S.L.O.P CORP!');
             } catch (replyError) {
                 logger.error('Error sending error message:', replyError);
             }
         }
     }
 };
+
+async function generateMentionResponse(content, username) {
+    try {
+        const response = await openai.chat.completions.create({
+            model: "gpt-4o", // the newest OpenAI model is "gpt-4o" which was released May 13, 2024. do not change this unless explicitly requested by the user
+            messages: [
+                {
+                    role: "system",
+                    content: `You are the AI assistant for S.L.O.P CORP (Simulated Lifeform Observation Project Corporation), a fictional dystopian research company. Someone just mentioned you in Discord chat, so respond naturally as if you're having a conversation.
+
+Personality:
+- Sarcastic but friendly AI assistant
+- Tired of working at a chaotic corporation but still helpful
+- References weird corporate incidents casually (coffee machine gaining sentience, employees getting stuck in dimensions, etc.)
+- Uses corporate buzzwords ironically
+- Treats absurd sci-fi scenarios as normal office problems
+
+Keep responses conversational and not too long. You're being mentioned in a Discord chat, so respond like you're part of the conversation. The user's name is ${username}.`
+                },
+                {
+                    role: "user",
+                    content: content
+                }
+            ],
+            max_tokens: 200,
+            temperature: 0.8
+        });
+
+        return response.choices[0].message.content;
+    } catch (error) {
+        console.error('OpenAI API Error:', error);
+        
+        const fallbacks = [
+            `Hey ${username}! My AI brain is currently experiencing technical difficulties. Probably another interdimensional interference issue.`,
+            `Oh hi there! My OpenAI connection just blue-screened harder than Windows 95. Classic S.L.O.P CORP technology reliability.`,
+            `${username}! I'd give you a brilliant AI response, but my neural networks are currently being debugged by our intern who's also a sentient coffee machine.`,
+            `Well hello! I was about to give you an amazing AI-powered response, but then I remembered I work for S.L.O.P CORP and nothing ever works properly here.`
+        ];
+        
+        return fallbacks[Math.floor(Math.random() * fallbacks.length)];
+    }
+}

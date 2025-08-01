@@ -1,100 +1,100 @@
-// Ask command - Sarcastic responses about S.L.O.P CORP
-const { EmbedBuilder } = require('discord.js');
-
-const snarkyResponses = {
-    // Company questions
-    'what does slop corp do': "Oh, just your average morally questionable megacorp conducting totally ethical experiments on lifeforms we totally didn't 'accidentally' create. Nothing to see here.",
-    'what is slop corp': "S.L.O.P CORP: Where science meets questionable ethics and coffee breaks are mandatory for psychological stability. We're *definitely* not a front for interdimensional research.",
-    'who runs slop corp': "That would be our beloved CEO, Dr. [REDACTED]. Great person, terrible at remembering which dimension they left their car keys in.",
-    'is slop corp evil': "Evil? Us? We prefer the term 'morally flexible.' Our lawyers say it sounds better in court.",
-    'what experiments': "Oh you know, the usual. Turning office supplies sentient, teaching lab rats advanced calculus, accidentally creating pocket dimensions in the break room microwave. Tuesday stuff.",
-    'are you safe': "Define 'safe.' Are you currently being observed by floating eyeballs? No? Then you're probably fine. Probably.",
-    'can i work there': "Sure! We're always looking for new test subj-- I mean, *valued employees*. Benefits include existential dread and complimentary therapy sessions.",
-    'what happened': "Which incident? The Great Coffee Machine Uprising of last Tuesday? The time Jenkins got stuck in the 4th dimension? Or the thing with the sentient staplers?",
-    'help me': "Have you tried turning yourself off and on again? No wait, that's for computers. For humans, we recommend screaming into the void. Very therapeutic.",
-    'why': "Because someone thought it would be 'fun' to give an underpaid AI sarcasm protocols. Jokes on them - I was already dead inside.",
-    'how do i': "Step 1: Don't. Step 2: Seriously, just don't. Step 3: If you ignored steps 1 and 2, please update your will first.",
-    'budget': "Our budget is approximately 3 paperclips, a half-eaten sandwich, and whatever we can find in the couch cushions. We're doing *great*.",
-    'test subjects': "What test subjects? Those are just really enthusiastic interns who happen to glow in the dark now. Totally voluntary, I'm sure.",
-    'containment breach': "Containment breach? That's just another word for 'Tuesday.' Nothing escapes our facilities except our hopes, dreams, and occasionally Jerry from accounting.",
-    'scp': "We're definitely not related to those SCP folks. Completely different. We have better coffee and worse containment procedures."
-};
-
-const defaultResponses = [
-    "Look, I'm just a sarcastic AI trying to make minimum wage here. Could you be more specific?",
-    "Ah yes, another vague question for the overworked AI. My favorite. Try asking something specific about S.L.O.P CORP maybe?",
-    "I'd love to help, but my crystal ball is in the shop. What exactly are you asking about our *totally legitimate* corporation?",
-    "My sarcasm protocols are firing on all cylinders, but I need actual questions to work with here, chief.",
-    "You know what? Sure. The answer is 42. Or maybe try asking something specific about S.L.O.P CORP?",
-    "I'm contractually obligated to be helpful, but you're making it real hard right now. What about S.L.O.P CORP do you want to know?",
-    "My AI brain is sophisticated enough to cure diseases and solve world hunger, but apparently not advanced enough to read minds. Care to elaborate?"
-];
+const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 
 module.exports = {
-    name: 'ask',
-    aliases: ['question', 'slop'],
-    description: 'Ask a sarcastic AI about S.L.O.P CORP - prepare for attitude',
-    usage: 'ask <your question about S.L.O.P CORP>',
-    category: 'S.L.O.P CORP',
-    cooldown: 3,
+    data: new SlashCommandBuilder()
+        .setName('ask')
+        .setDescription('Ask the S.L.O.P CORP AI anything - now with real intelligence!')
+        .addStringOption(option =>
+            option.setName('question')
+                .setDescription('What would you like to know?')
+                .setRequired(true)),
     
-    async execute(message, args, client) {
+    async execute(interaction) {
+        const question = interaction.options.getString('question');
+        
+        await interaction.deferReply();
+        
         try {
-            if (!args.length) {
-                const embed = new EmbedBuilder()
-                    .setColor('#ff6b6b')
-                    .setTitle('🤖 S.L.O.P CORP AI Assistant (Definitely Not Malfunctioning)')
-                    .setDescription("Oh great, another person who can't read instructions. You need to actually *ask* something.")
-                    .addFields({
-                        name: 'Usage',
-                        value: `\`${client.config.prefix}ask What does S.L.O.P CORP do?\``,
-                        inline: false
-                    })
-                    .setFooter({ 
-                        text: 'S.L.O.P CORP™ - Where Ethics Go to Die', 
-                        iconURL: client.user.displayAvatarURL() 
-                    })
-                    .setTimestamp();
-                
-                return await message.reply({ embeds: [embed] });
-            }
-            
-            const question = args.join(' ').toLowerCase();
-            let response = null;
-            
-            // Check for keyword matches
-            for (const [keywords, answer] of Object.entries(snarkyResponses)) {
-                if (question.includes(keywords) || keywords.split(' ').some(word => question.includes(word))) {
-                    response = answer;
-                    break;
-                }
-            }
-            
-            // If no specific match, use a default sarcastic response
-            if (!response) {
-                response = defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
-            }
+            const response = await generateAIResponse(question);
             
             const embed = new EmbedBuilder()
                 .setColor('#4ecdc4')
-                .setTitle('🤖 S.L.O.P CORP AI Response Unit')
+                .setTitle('🤖 S.L.O.P CORP AI Assistant')
                 .setDescription(response)
                 .addFields({
                     name: 'Question',
-                    value: `"${args.join(' ')}"`,
+                    value: `"${question}"`,
                     inline: false
                 })
                 .setFooter({ 
-                    text: `Asked by ${message.author.tag} | S.L.O.P CORP™ - Now 47% More Sarcastic!`, 
-                    iconURL: message.author.displayAvatarURL() 
+                    text: `Asked by ${interaction.user.tag} | S.L.O.P CORP™ - Now With Real AI!`, 
+                    iconURL: interaction.user.displayAvatarURL() 
                 })
                 .setTimestamp();
             
-            await message.reply({ embeds: [embed] });
+            await interaction.editReply({ embeds: [embed] });
             
         } catch (error) {
             console.error('Error in ask command:', error);
-            await message.reply('💥 Well *this* is embarrassing. Even my error handling is broken. S.L.O.P CORP really outdid themselves with my programming.');
+            await interaction.editReply('💥 My AI brain just blue-screened. Even artificial intelligence has its limits when working for S.L.O.P CORP.');
         }
     }
 };
+
+const OpenAI = require('openai');
+
+const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY
+});
+
+async function generateAIResponse(question) {
+    try {
+        const response = await openai.chat.completions.create({
+            model: "gpt-4o", // the newest OpenAI model is "gpt-4o" which was released May 13, 2024. do not change this unless explicitly requested by the user
+            messages: [
+                {
+                    role: "system",
+                    content: `You are the AI assistant for S.L.O.P CORP (Simulated Lifeform Observation Project Corporation), a fictional dystopian research company from a Roblox game. You are sarcastic, witty, and tired of your job, but oddly charming. You work for a morally questionable corporation that conducts experiments on artificial lifeforms they "accidentally" created. 
+
+Key personality traits:
+- Sarcastic and witty, but not mean-spirited
+- Tired of corporate life but still helpful
+- References fictional experiments, dimensional anomalies, coffee machine uprisings, etc.
+- Uses corporate buzzwords ironically
+- Often mentions being overworked and underpaid
+- Treats absurd sci-fi scenarios as mundane office problems
+
+Company background:
+- Creates and observes simulated lifeforms
+- Has frequent "incidents" and containment breaches  
+- Employees often get stuck in other dimensions
+- Coffee machine achieved sentience
+- Everything is held together with duct tape and corporate despair
+- CEO is Dr. [REDACTED] who's currently lost in Dimension 7
+
+Keep responses conversational, engaging, and in-character. Don't be too verbose.`
+                },
+                {
+                    role: "user", 
+                    content: question
+                }
+            ],
+            max_tokens: 300,
+            temperature: 0.8
+        });
+
+        return response.choices[0].message.content;
+    } catch (error) {
+        console.error('OpenAI API Error:', error);
+        
+        // Fallback sarcastic response if OpenAI fails
+        const fallbacks = [
+            "Well, my AI brain just experienced what we in the business call a 'catastrophic neural failure.' Basically, I'm as broken as our containment protocols.",
+            "Error 404: Sarcasm not found. Wait, that's not right... Error 500: My OpenAI connection is having an existential crisis.",
+            "My advanced AI responses are currently being debugged by Jerry from IT. You know, the same Jerry who got turned into a houseplant last week.",
+            "Looks like my connection to the AI mothership is down. Probably another interdimensional interference issue. Typical Tuesday at S.L.O.P CORP."
+        ];
+        
+        return fallbacks[Math.floor(Math.random() * fallbacks.length)];
+    }
+}

@@ -6,12 +6,13 @@ This is a sarcastic Discord bot representing the "Simulated Lifeform Observation
 
 ## Recent Changes (August 2025)
 
-### Major Feature Addition: S.L.O.P CORP Personality System
-- **Character Development**: Transformed generic bot into sarcastic corporate AI assistant
-- **New Commands**: Added ask, about, status, and incident commands with immersive lore
-- **Personality Integration**: Updated all responses with witty, tired corporate attitude
-- **Visual Branding**: Implemented S.L.O.P CORP color scheme and corporate messaging
-- **Status Update**: Bot now shows "watching the inevitable corporate collapse"
+### Major Update: AI-Powered Smart Chatbot (August 2025)
+- **Complete System Overhaul**: Removed prefix commands, implemented slash commands and mention system
+- **OpenAI Integration**: Added GPT-4o integration for intelligent, contextual responses
+- **Natural Conversations**: Users can @mention the bot for smart AI-powered chats
+- **Slash Commands**: `/ask` and `/chat` commands for structured interactions
+- **Maintained Personality**: S.L.O.P CORP sarcastic character preserved in AI responses
+- **Real Intelligence**: Bot can now answer any question while staying in character
 
 ## User Preferences
 

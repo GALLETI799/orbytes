@@ -6,7 +6,7 @@ require('dotenv').config();
 
 const config = require('./config/botConfig');
 const logger = require('./utils/logger');
-const commandHandler = require('./handlers/commandHandler');
+const slashCommandHandler = require('./handlers/slashCommandHandler');
 const eventHandler = require('./handlers/eventHandler');
 
 // Create Discord client with necessary intents
@@ -23,8 +23,8 @@ client.commands = new Collection();
 client.cooldowns = new Collection();
 client.config = config;
 
-// Load command and event handlers
-commandHandler(client);
+// Load slash command and event handlers
+slashCommandHandler.loadCommands(client);
 eventHandler(client);
 
 // Global error handling

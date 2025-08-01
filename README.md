@@ -19,13 +19,16 @@ A sarcastic Discord bot representing the "Simulated Lifeform Observation Project
 - ✅ **Permission Checks** - User and bot permission validation
 - ✅ **Logging System** - File and console logging with different levels
 
-### 📋 S.L.O.P CORP Commands
-- `!ask <question>` - Get sarcastic answers about S.L.O.P CORP operations
-- `!about` - Learn about the company (spoiler: you probably shouldn't)
-- `!status` - Check current operational status (spoiler: it's probably bad)
-- `!incident` - Generate random incident reports (they happen hourly)
-- `!help` - View all commands with corporate attitude
-- `!ping` - Test bot response time with style
+### 🎯 How to Interact
+- **@mention the bot** - Have a natural conversation powered by OpenAI
+- `/ask <question>` - Get intelligent S.L.O.P CORP responses to any question
+- `/chat <message>` - Have a casual conversation with the AI assistant
+
+### 🧠 AI Features
+- **Real OpenAI Integration** - Powered by GPT-4o for intelligent responses
+- **S.L.O.P CORP Personality** - Maintains sarcastic corporate character in all responses
+- **Natural Conversations** - No more rigid commands, just mention the bot naturally
+- **Context Awareness** - Remembers it's a tired AI working at a dystopian corporation
 
 ## Prerequisites
 
