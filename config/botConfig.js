@@ -1,0 +1,61 @@
+// Bot configuration and environment variables
+const logger = require('../utils/logger');
+
+// Validate required environment variables
+const requiredEnvVars = ['DISCORD_TOKEN'];
+const missingEnvVars = requiredEnvVars.filter(varName => !process.env[varName]);
+
+if (missingEnvVars.length > 0) {
+    logger.error(`Missing required environment variables: ${missingEnvVars.join(', ')}`);
+    logger.error('Please check your .env file and ensure all required variables are set');
+    process.exit(1);
+}
+
+// Validate token format
+if (process.env.DISCORD_TOKEN && !process.env.DISCORD_TOKEN.match(/^[A-Za-z0-9._-]+$/)) {
+    logger.error('Invalid Discord token format. Token should only contain letters, numbers, dots, underscores, and hyphens.');
+    process.exit(1);
+}
+
+const config = {
+    // Discord bot token
+    token: process.env.DISCORD_TOKEN,
+    
+    // Command prefix
+    prefix: process.env.PREFIX || '!',
+    
+    // Bot owner ID for admin commands
+    ownerId: process.env.OWNER_ID || '',
+    
+    // Guild ID for development (optional)
+    guildId: process.env.GUILD_ID || '',
+    
+    // Bot settings
+    settings: {
+        // Command cooldown in milliseconds (default: 3 seconds)
+        defaultCooldown: 3000,
+        
+        // Maximum command length
+        maxCommandLength: 2000,
+        
+        // Enable/disable command logging
+        logCommands: true,
+        
+        // Bot status
+        status: {
+            type: 'WATCHING', // PLAYING, STREAMING, LISTENING, WATCHING, COMPETING
+            name: 'for commands | !help'
+        }
+    },
+    
+    // Color scheme for embeds
+    colors: {
+        primary: '#0099ff',
+        success: '#00ff00',
+        warning: '#ffff00',
+        error: '#ff0000',
+        info: '#00ffff'
+    }
+};
+
+module.exports = config;
