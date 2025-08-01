@@ -1,8 +1,17 @@
-# Discord Bot Template
+# S.L.O.P CORP Discord Bot
 
 ## Overview
 
-This is a comprehensive Discord bot template built with Node.js and Discord.js v14. The bot features a modular command system with dynamic loading, event handling, cooldown management, and comprehensive logging. It's designed as a foundation for building Discord bots with essential functionality already implemented, including ping, help, info, and echo commands as examples.
+This is a sarcastic Discord bot representing the "Simulated Lifeform Observation Project Corporation" - a fictional company from a Roblox game. Built with Node.js and Discord.js v14, the bot acts as a witty, tired AI assistant that provides hilariously unhelpful information about S.L.O.P CORP's questionable operations. The bot features a modular command system with dynamic loading, event handling, cooldown management, and comprehensive logging, all wrapped in a dystopian corporate personality.
+
+## Recent Changes (August 2025)
+
+### Major Feature Addition: S.L.O.P CORP Personality System
+- **Character Development**: Transformed generic bot into sarcastic corporate AI assistant
+- **New Commands**: Added ask, about, status, and incident commands with immersive lore
+- **Personality Integration**: Updated all responses with witty, tired corporate attitude
+- **Visual Branding**: Implemented S.L.O.P CORP color scheme and corporate messaging
+- **Status Update**: Bot now shows "watching the inevitable corporate collapse"
 
 ## User Preferences
 

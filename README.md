@@ -1,18 +1,31 @@
-# Discord Bot Template
+# S.L.O.P CORP Discord Bot
 
-A comprehensive Discord bot template built with Node.js and Discord.js, featuring a modular command structure and essential bot functionality.
+A sarcastic Discord bot representing the "Simulated Lifeform Observation Project Corporation" - a fictional company from a Roblox game. This bot acts as a witty, tired AI assistant that provides hilariously unhelpful information about S.L.O.P CORP's questionable operations.
 
-## Features
+## Character & Features
 
+### 🤖 Bot Personality
+- **Sarcastic AI Assistant** - Tired of answering the same questions but oddly charming
+- **S.L.O.P CORP Employee** - Reluctant corporate representative with attitude
+- **Immersive Roleplay** - References fictional experiments, shady operations, and overworked test subjects
+- **Dystopian Humor** - Perfect blend of corporate satire and sci-fi comedy
+
+### 🛠️ Technical Features
 - ✅ **Modular Command System** - Easy to add and manage commands
-- ✅ **Event Handling** - Comprehensive event listener system
+- ✅ **Event Handling** - Comprehensive event listener system  
 - ✅ **Cooldown Management** - Prevents command spam
 - ✅ **Error Handling** - Robust error handling and logging
 - ✅ **Environment Configuration** - Secure token and setting management
 - ✅ **Permission Checks** - User and bot permission validation
 - ✅ **Logging System** - File and console logging with different levels
-- ✅ **Help Command** - Dynamic help system showing all commands
-- ✅ **Example Commands** - Ping, info, echo commands included
+
+### 📋 S.L.O.P CORP Commands
+- `!ask <question>` - Get sarcastic answers about S.L.O.P CORP operations
+- `!about` - Learn about the company (spoiler: you probably shouldn't)
+- `!status` - Check current operational status (spoiler: it's probably bad)
+- `!incident` - Generate random incident reports (they happen hourly)
+- `!help` - View all commands with corporate attitude
+- `!ping` - Test bot response time with style
 
 ## Prerequisites
 

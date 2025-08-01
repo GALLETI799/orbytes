@@ -44,17 +44,18 @@ const config = {
         // Bot status
         status: {
             type: 'WATCHING', // PLAYING, STREAMING, LISTENING, WATCHING, COMPETING
-            name: 'for commands | !help'
+            name: 'the inevitable corporate collapse | !ask'
         }
     },
     
-    // Color scheme for embeds
+    // Color scheme for embeds - S.L.O.P CORP themed
     colors: {
-        primary: '#0099ff',
-        success: '#00ff00',
-        warning: '#ffff00',
-        error: '#ff0000',
-        info: '#00ffff'
+        primary: '#4ecdc4',      // Teal - main S.L.O.P CORP color
+        success: '#45b7d1',      // Light blue - rare success
+        warning: '#f9ca24',      // Yellow - frequent warnings
+        error: '#ff6b6b',        // Red - constant errors
+        info: '#a55eea',         // Purple - mysterious info
+        slop: '#ff9999'          // Pink - corporate branding
     }
 };
 

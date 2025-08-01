@@ -30,8 +30,8 @@ module.exports = {
                 
                 const embed = new EmbedBuilder()
                     .setColor(client.config.colors.primary)
-                    .setTitle('📚 Available Commands')
-                    .setDescription(`Use \`${client.config.prefix}help <command>\` for detailed information about a command.`)
+                    .setTitle('🤖 S.L.O.P CORP AI Assistant Commands')
+                    .setDescription(`*"Oh great, another person who needs hand-holding through basic commands."*\n\nUse \`${client.config.prefix}help <command>\` for detailed information about a command.`)
                     .setThumbnail(client.user.displayAvatarURL());
                 
                 // Add fields for each category
@@ -48,17 +48,18 @@ module.exports = {
                 });
                 
                 embed.addFields({
-                    name: '🔗 Additional Info',
+                    name: '🔗 S.L.O.P CORP Info',
                     value: [
-                        `**Prefix:** \`${client.config.prefix}\``,
+                        `**Command Prefix:** \`${client.config.prefix}\``,
                         `**Total Commands:** ${commands.size}`,
-                        `**Bot Version:** 1.0.0`
+                        `**AI Version:** 2.1.7 (Sarcasm Protocol Enabled)`,
+                        `**Corporate Status:** Probably Doomed™`
                     ].join('\n'),
                     inline: false
                 });
                 
                 embed.setFooter({ 
-                    text: `Requested by ${message.author.tag}`, 
+                    text: `Requested by ${message.author.tag} | S.L.O.P CORP™ - Where Hope Goes to Die`, 
                     iconURL: message.author.displayAvatarURL() 
                 })
                 .setTimestamp();
