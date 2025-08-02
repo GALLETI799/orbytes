@@ -6,17 +6,19 @@ This is a spontaneous AI-powered Discord bot representing "0RBYTE" from S.L.O.P 
 
 ## Recent Changes (August 2025)
 
-### Major Update: Helpful AI Tool + Conversational Personality (August 2025)
+### Major Update: Sarcastic AI Tool with Emotional Intelligence (August 2025)
 - **Complete System Overhaul**: Pure mention-based interaction, no commands whatsoever
 - **Real Math Calculator**: Actually solves arithmetic problems with correct answers (2+2=4!)
-- **Helpful Problem Solver**: Assists with coding, homework, life advice, and practical questions
-- **Smart Context Recognition**: Detects math, programming, school, and life problems to provide targeted help
-- **Conversational Personality**: Maintains witty, engaging personality while being genuinely useful
-- **Ultra-Smart Fallbacks**: Even without OpenAI, provides helpful responses based on message content
+- **Emotional Response System**: Gets genuinely angry when insulted, shows personality through sarcasm
+- **Maximum Sarcasm Mode**: Corporate cynicism, intellectual superiority, and witty comebacks
+- **Smart Context Recognition**: Detects insults, math, programming, school problems for targeted responses
+- **Helpful but Sassy**: Maintains usefulness while being magnificently condescending
+- **Ultra-Smart Fallbacks**: Even without OpenAI, delivers personality-rich responses
 
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
+Personality preferences: Maximum sarcasm, gets angry when insulted, intellectually superior attitude, corporate cynicism.
 
 ## System Architecture
 

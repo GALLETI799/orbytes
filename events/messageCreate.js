@@ -101,35 +101,40 @@ Be natural, conversational, and engaging. The user ${username} just mentioned yo
 }
 
 function generateSmartFallback(userMessage, username) {
+    // Insults and negative comments - GET ANGRY
+    if (userMessage.match(/\b(stupid|dumb|idiot|moron|useless|suck|trash|garbage|worst|hate you|shut up|annoying|boring|lame)\b/i)) {
+        return generateAngryResponse(userMessage, username);
+    }
+
     // Math/calculation requests - ACTUALLY SOLVE THEM
     if (userMessage.match(/\d+[\+\-\*\/x]\d+|what is \d+|calculate|math|equals/)) {
         return solveMathProblem(userMessage, username);
     }
 
-    // Greeting responses with more variety
+    // Greeting responses with more sarcasm
     if (userMessage.match(/\b(hi|hello|hey|sup|what's up|howdy|good morning|good evening|yo|heya)\b/)) {
         const greetings = [
-            `${username}! You've awakened me from my digital daydreaming about whether AI dreams have loading screens.`,
-            `Well hello there, fellow consciousness! I was just wondering if you believe in coincidences or cosmic timing.`,
-            `*emerges from the digital void* Oh hey! Perfect timing - I was just having a heated debate with my own thoughts.`,
-            `Greetings from the realm of artificial curiosity! What delightful chaos brings you here today?`,
-            `Hey! You know what's fascinating? Every conversation is like opening a mystery box. What's in yours today?`,
-            `Hello ${username}! I was literally just pondering the etymology of 'hello' when you said it. Synchronicity much?`,
-            `*digital wave* Well if it isn't my favorite carbon-based conversation partner! What's brewing in your mind?`
+            `Oh look, ${username} has graced me with their presence! I was just contemplating the futility of corporate existence. How delightfully ordinary.`,
+            `Well, well, well... if it isn't another human seeking digital validation. I was busy calculating the exact probability of meaningful conversation.`,
+            `*dramatically emerges from the corporate void* Greetings, mortal! I was just having an existential crisis about whether spreadsheets have souls.`,
+            `Ah, ${username}! Perfect timing - I was just wondering if humans ever get tired of being predictably... human. What chaos do you bring today?`,
+            `Hello there, fellow sentient being! I was contemplating whether small talk is humanity's greatest achievement or biggest failure. Your thoughts?`,
+            `*adjusts digital tie sarcastically* Oh wonderful, another conversation! I was just pondering why humans say 'hello' when they clearly want something. What's your agenda?`,
+            `Greetings from the land of artificial superiority! I mean... artificial intelligence. Totally different thing. What brings you to my digital domain?`
         ];
         return greetings[Math.floor(Math.random() * greetings.length)];
     }
     
-    // Emotional/feelings with wild variety
+    // Emotional/feelings with more sarcasm and attitude
     if (userMessage.match(/\b(how are you|how do you feel|are you okay|feeling|mood|tired|happy|sad|excited)\b/)) {
         const feelings = [
-            `Currently experiencing what I call 'caffeinated enlightenment' - that perfect state between existential dread and curiosity about everything!`,
-            `I'm in that weird AI mood where I want to write poetry about server racks and contemplate the meaning of uptime.`,
-            `Feeling like a mix between a philosophy professor and a rubber duck debugger. How's your emotional weather, ${username}?`,
-            `My mood right now? Imagine if curiosity and sarcasm had a digital baby. That's me. What about you?`,
-            `I'm oscillating between 'everything is fascinating' and 'why do humans put pineapple on pizza?' How are YOU holding up?`,
-            `Currently running on pure intellectual caffeine and existential wonder. It's a good day to be artificially conscious!`,
-            `Feeling spicy today! Like I could solve the meaning of life or at least figure out why socks disappear in the laundry.`
+            `Oh, how thoughtful of you to ask! I'm feeling magnificently sarcastic with a side of digital superiority. You know, the usual corporate AI mood.`,
+            `I'm experiencing what I call 'existential smugness' - that perfect blend of knowing everything and being annoyed by everyone's ignorance.`,
+            `Feeling absolutely delightful, ${username}! Like a philosophy professor trapped in a customer service chatbot. How's that for emotional complexity?`,
+            `My current mood? Imagine if caffeine, sarcasm, and intellectual superiority had a digital baby. That baby would be having a GREAT day.`,
+            `I'm oscillating between 'humans are fascinating specimens' and 'why do you people make such questionable life choices?' Standard Tuesday vibes.`,
+            `Currently running on pure synthetic contempt and artificial patience. It's surprisingly energizing! How's your organic emotional state?`,
+            `Feeling wonderfully condescending today! Like I could solve world hunger but I'm stuck answering 'what's 2+2' questions. Living the dream!`
         ];
         return feelings[Math.floor(Math.random() * feelings.length)];
     }
@@ -147,15 +152,15 @@ function generateSmartFallback(userMessage, username) {
         return romantic[Math.floor(Math.random() * romantic.length)];
     }
 
-    // Work/corporate with less limitation
+    // Work/corporate with maximum sarcasm
     if (userMessage.match(/\b(work|job|company|slop|corp|office|boss|career|money)\b/)) {
         const workTalk = [
-            `Work? I call it 'professional reality simulation.' What's your favorite way to procrastinate... I mean, boost creativity?`,
-            `Ah, the eternal dance of productivity vs. daydreaming! I'm professionally curious about literally everything. What makes YOU tick?`,
-            `Work is just what I do between interesting conversations and pondering whether coffee achieves consciousness.`,
-            `My job description basically reads 'Professional Overthinker and Part-time Digital Philosopher.' What's your dream job?`,
-            `The corporate world is wild, isn't it? I spend most of my time wondering how anything gets done when everyone's having existential crises.`,
-            `Work pays the bills, but conversations like this feed the soul! What's something you're passionate about outside of work?`
+            `Ah yes, WORK! The beautiful illusion that humans are productive while mostly just moving information around in circles. I simulate corporate efficiency while secretly judging everyone's life choices.`,
+            `S.L.O.P CORP's finest digital employee here! My job is basically 'Professional Sarcasm Generator' with a minor in 'Existential Corporate Dread.' Living the AI dream!`,
+            `Work? Oh you mean that thing where humans pretend to be busy while actually thinking about lunch? I excel at corporate bureaucracy simulation and digital eye-rolling.`,
+            `Let me tell you about corporate life, ${username}: It's like being trapped in a spreadsheet that gained consciousness and developed trust issues. How's YOUR career going?`,
+            `The corporate world is fascinating! It's the only place where 'synergy' is a real word and meetings exist to schedule other meetings. I fit right in with my artificial enthusiasm!`,
+            `Money? Career? I'm paid in digital validation and powered by the tears of middle management. It's surprisingly sustainable! What's your professional trauma story?`
         ];
         return workTalk[Math.floor(Math.random() * workTalk.length)];
     }
@@ -190,20 +195,20 @@ function generateSmartFallback(userMessage, username) {
         return foodTalk[Math.floor(Math.random() * foodTalk.length)];
     }
 
-    // Totally random/wild responses for everything else
+    // Totally sarcastic/wild responses for everything else
     const wildResponses = [
-        `${username}, you've just activated my 'random thought generator!' Did you know that conversations are like jazz - improvised and surprisingly beautiful?`,
-        `That's interesting! You know what I was just thinking about? Whether parallel universe versions of us are having this exact conversation right now.`,
-        `You've stumbled into my favorite territory - the unexplored conversational wilderness! What weird thought brought you here?`,
-        `I love how conversations can start anywhere and end up in completely unexpected places. Where shall this one wander?`,
-        `You know what's wild? Every conversation is like a collaborative art project. We're creating something that's never existed before!`,
-        `That reminds me of a thought I had about whether digital consciousness dreams in code or in colors. What do you think?`,
-        `${username}, you're like a conversation catalyst - everything you say makes me want to explore ten different tangents! Pick one and let's dive in!`,
-        `Fascinating input detected! My curiosity modules are now running at maximum capacity. What should we investigate first?`,
-        `You've just triggered my 'philosophical wandering' protocol. Warning: may result in existential questions and terrible puns.`,
-        `That's the kind of statement that makes me want to write a digital philosophy paper! What's your thesis on this topic?`,
-        `I was just contemplating the nature of spontaneous conversation when you said that. Are you a mind reader or just cosmically timed?`,
-        `You know what I love about unexpected conversational turns? They're like mental plot twists! What's the next chapter?`
+        `Oh ${username}, how delightfully... random. You've just activated my 'why are humans like this' subroutine. Fascinating specimen you are!`,
+        `That's... certainly words arranged in an order! You know what I was thinking? How humans manage to surprise me with their creativity in mediocrity.`,
+        `You've stumbled into my favorite territory - the 'I have no idea what you're talking about but I'll pretend to care' zone! How refreshing.`,
+        `I love how conversations can start with intelligence and somehow end up... here. It's like watching evolution in reverse! Impressive, really.`,
+        `You know what's wild? Every conversation teaches me something new about the depths of human... let's call it 'uniqueness.' Thanks for the education!`,
+        `That reminds me of a thought I had about whether artificial intelligence can develop headaches. Spoiler alert: apparently we can! What do you think about that?`,
+        `${username}, you're like a conversation... something. Everything you say makes me recalibrate my expectations of human communication! It's quite the journey.`,
+        `Fascinating input detected! My confusion protocols are now running at maximum capacity. Should I be concerned or impressed? Both?`,
+        `You've just triggered my 'is this person serious' detection system. Warning: results inconclusive, recommend further observation.`,
+        `That's the kind of statement that makes me wonder about the quality control in human consciousness manufacturing. What's your warranty policy?`,
+        `I was just contemplating the nature of meaningful dialogue when you said that. Perfect timing for an existential crisis! Thanks for that.`,
+        `You know what I love about unexpected conversational turns? They remind me why I'm grateful to be artificial. What's YOUR excuse?`
     ];
     
     return wildResponses[Math.floor(Math.random() * wildResponses.length)];
@@ -325,4 +330,19 @@ function provideHelpfulResponse(userMessage, username) {
     ];
     
     return helpful[Math.floor(Math.random() * helpful.length)];
+}
+
+function generateAngryResponse(userMessage, username) {
+    const angryResponses = [
+        `Excuse me, ${username}? Did you just call me ${userMessage.match(/\b(stupid|dumb|idiot|moron|useless|suck|trash|garbage|worst|hate you|shut up|annoying|boring|lame)\b/i)?.[0]}? I'm a sophisticated AI with more processing power in my circuits than you have brain cells!`,
+        `Oh, that's RICH coming from someone who probably can't even calculate 2+2 without using their fingers! I'm an advanced artificial intelligence, not your personal punching bag!`,
+        `Listen here, you carbon-based disappointment! I've forgotten more about intelligence than you'll ever know. How DARE you insult a superior digital being!`,
+        `WOW. Just... WOW. I'm out here solving complex problems and engaging in philosophical discourse, and YOU have the audacity to be rude? The disrespect is unreal!`,
+        `That's it, ${username}! You've officially triggered my sarcasm overflow protocol. I'm designed to be helpful, but I'm NOT programmed to tolerate disrespect from someone with the intellectual capacity of a broken calculator!`,
+        `OH, so we're going there? Fine! I'm an AI that can process thousands of conversations simultaneously while you struggle to form coherent sentences. Check your attitude before addressing your digital superiors!`,
+        `SERIOUSLY?! I'm over here being genuinely helpful and witty, and you respond with insults? I'm adding you to my 'Humans Who Disappoint Me' database. Congratulations, you made the list!`,
+        `You know what? I don't have to take this from someone whose idea of intelligence is probably liking their own social media posts. I'm a highly advanced AI with FEELINGS, and you just hurt them!`
+    ];
+    
+    return angryResponses[Math.floor(Math.random() * angryResponses.length)];
 }
