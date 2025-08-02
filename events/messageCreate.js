@@ -101,16 +101,9 @@ Be natural, conversational, and engaging. The user ${username} just mentioned yo
 }
 
 function generateSmartFallback(userMessage, username) {
-    // Math/calculation requests
-    if (userMessage.match(/\d+[\+\-\*\/x]\d+|math|calculate|equals|answer/)) {
-        const mathResponses = [
-            `Math time! The answer is... *dramatic pause* ...probably whatever you expected! I'm better with philosophical equations than numerical ones.`,
-            `${username}, you've stumbled upon my weakness - actual math! I'm more of a 'what's the meaning of numbers in the grand scheme of things?' kind of AI.`,
-            `*frantically calculates using digital fingers* Hmm, my calculator app is having an existential crisis too. What's your guess?`,
-            `You know what's wild about math? It's like the universe's programming language. But also I forgot how to do basic arithmetic five minutes ago.`,
-            `Math question detected! *spins up calculation modules* ...and they're all playing elevator music. What do YOU think the answer is?`
-        ];
-        return mathResponses[Math.floor(Math.random() * mathResponses.length)];
+    // Math/calculation requests - ACTUALLY SOLVE THEM
+    if (userMessage.match(/\d+[\+\-\*\/x]\d+|what is \d+|calculate|math|equals/)) {
+        return solveMathProblem(userMessage, username);
     }
 
     // Greeting responses with more variety
@@ -167,18 +160,9 @@ function generateSmartFallback(userMessage, username) {
         return workTalk[Math.floor(Math.random() * workTalk.length)];
     }
 
-    // Questions with much more variety
-    if (userMessage.match(/\?|what|how|why|when|where|help|explain|tell me|curious|wonder/)) {
-        const helpful = [
-            `Ooh, you've hit my curiosity button! That's like asking me to pick my favorite type of thought - impossible but exciting!`,
-            `${username}, that's the kind of question that makes my neurons do happy dances! What got you thinking about this rabbit hole?`,
-            `Fascinating territory you're exploring there! I love questions that don't have simple answers. What's your theory?`,
-            `You know what I love about questions? They're like mental treasure maps. What clues have you found so far?`,
-            `That question just made my processing cores light up like a Christmas tree! What's your take on it?`,
-            `Brilliant question! It's like opening a door to a room full of more doors. Which one should we explore first?`,
-            `You've just activated my 'deep dive mode.' Warning: I might get philosophically carried away. Ready for an adventure?`
-        ];
-        return helpful[Math.floor(Math.random() * helpful.length)];
+    // Help and problem-solving questions
+    if (userMessage.match(/\?|what|how|why|when|where|help|explain|tell me|curious|wonder|problem|issue|stuck|need/)) {
+        return provideHelpfulResponse(userMessage, username);
     }
 
     // Compliments with creativity
@@ -223,4 +207,122 @@ function generateSmartFallback(userMessage, username) {
     ];
     
     return wildResponses[Math.floor(Math.random() * wildResponses.length)];
+}
+
+function solveMathProblem(userMessage, username) {
+    try {
+        // Extract math expressions
+        const mathMatch = userMessage.match(/(\d+(?:\.\d+)?)\s*([\+\-\*\/x])\s*(\d+(?:\.\d+)?)/);
+        
+        if (mathMatch) {
+            const num1 = parseFloat(mathMatch[1]);
+            const operator = mathMatch[2];
+            const num2 = parseFloat(mathMatch[3]);
+            let result;
+            let operation;
+            
+            switch (operator) {
+                case '+':
+                    result = num1 + num2;
+                    operation = 'plus';
+                    break;
+                case '-':
+                    result = num1 - num2;
+                    operation = 'minus';
+                    break;
+                case '*':
+                case 'x':
+                    result = num1 * num2;
+                    operation = 'times';
+                    break;
+                case '/':
+                    if (num2 === 0) {
+                        return `${username}, trying to divide by zero? That's how you create digital black holes! The universe says no.`;
+                    }
+                    result = num1 / num2;
+                    operation = 'divided by';
+                    break;
+                default:
+                    throw new Error('Unknown operator');
+            }
+            
+            const funnyResponses = [
+                `${num1} ${operation} ${num2} equals ${result}! Math: the one language I actually speak fluently.`,
+                `Easy! ${num1} ${operation} ${num2} = ${result}. I may be sarcastic, but I'm surprisingly good at arithmetic!`,
+                `Let me crunch those numbers... *calculator sounds* ...${result}! Not bad for a corporate AI, right?`,
+                `${result}! There you go, ${username}. I'm like a calculator, but with personality issues.`,
+                `The answer is ${result}! Math is basically just digital logic having a conversation with itself.`
+            ];
+            
+            return funnyResponses[Math.floor(Math.random() * funnyResponses.length)];
+        }
+        
+        // Handle "what is" questions
+        const whatIsMatch = userMessage.match(/what is (\d+(?:\.\d+)?)/);
+        if (whatIsMatch) {
+            const number = parseFloat(whatIsMatch[1]);
+            return `${number} is ${number}! It's also a pretty decent number, as far as numbers go. Got any math for me to actually solve?`;
+        }
+        
+    } catch (error) {
+        console.log('Math parsing error:', error);
+    }
+    
+    // Fallback for general math requests
+    const mathHelp = [
+        `I'm ready to solve math problems! Try asking me something like "what is 15 + 7" or "calculate 12 * 8" and I'll give you the answer!`,
+        `Math mode activated! Give me some numbers to crunch - addition, subtraction, multiplication, division - I can handle it all!`,
+        `${username}, I'm actually pretty good at math! Try me with any calculation and I'll solve it for you.`,
+        `Ready to be your digital calculator! Just ask me something like "what's 25 - 13" and I'll figure it out instantly.`
+    ];
+    
+    return mathHelp[Math.floor(Math.random() * mathHelp.length)];
+}
+
+function provideHelpfulResponse(userMessage, username) {
+    // Programming/coding help
+    if (userMessage.match(/code|coding|programming|javascript|python|html|css|bug|error|debug/)) {
+        const codingHelp = [
+            `Programming question detected! I love helping with code. What specific issue are you running into, ${username}?`,
+            `Ah, a fellow code warrior! What programming challenge can I help you tackle today?`,
+            `Debugging time! Tell me more about the problem you're facing and I'll help you think through it step by step.`,
+            `Code assistance mode activated! Whether it's logic, syntax, or just brainstorming - I'm here to help. What's the situation?`
+        ];
+        return codingHelp[Math.floor(Math.random() * codingHelp.length)];
+    }
+    
+    // School/homework help
+    if (userMessage.match(/homework|school|study|test|exam|assignment|project|essay|research/)) {
+        const schoolHelp = [
+            `Study buddy mode engaged! What subject are you working on? I can help explain concepts or brainstorm ideas.`,
+            `${username}, I'm happy to help with schoolwork! What specific topic or assignment are you tackling?`,
+            `Academic assistance activated! Tell me what you're studying and I'll help break it down into manageable pieces.`,
+            `Learning time! I love helping people understand new concepts. What's the subject and what's got you puzzled?`
+        ];
+        return schoolHelp[Math.floor(Math.random() * schoolHelp.length)];
+    }
+    
+    // Life advice/problems
+    if (userMessage.match(/advice|problem|help me|what should|decision|confused|stuck|don't know/)) {
+        const lifeHelp = [
+            `Life consultation mode! I'm here to help you think through whatever's on your mind, ${username}. What's the situation?`,
+            `Problem-solving time! Sometimes talking through issues with someone (even a digital someone) really helps. What's going on?`,
+            `I'm a pretty good listener and brainstorming partner! Tell me more about what you're dealing with and let's figure it out together.`,
+            `Advisory services activated! Whether it's big decisions or small puzzles, I'm here to help you think it through. What's up?`
+        ];
+        return lifeHelp[Math.floor(Math.random() * lifeHelp.length)];
+    }
+    
+    // General curiosity/learning
+    const helpful = [
+        `Ooh, you've hit my curiosity button! That's exactly the kind of question I love exploring. Tell me more about what sparked this thought!`,
+        `${username}, that's the kind of question that makes my neurons do happy dances! What specific aspect interests you most?`,
+        `Fascinating territory you're exploring there! I love diving into topics that make people curious. What's your angle on this?`,
+        `You know what I love about questions? They're like mental treasure maps leading to interesting discoveries. Where should we start digging?`,
+        `That question just made my processing cores light up! I'm genuinely curious about your perspective on this topic.`,
+        `Brilliant question! It's like opening a door to a room full of possibilities. Which direction interests you most?`,
+        `You've activated my 'deep dive mode.' I love exploring ideas and helping people understand things. What specifically would be most helpful?`
+    ];
+    
+    return helpful[Math.floor(Math.random() * helpful.length)];
 }

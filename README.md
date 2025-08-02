@@ -27,10 +27,11 @@ A sarcastic Discord bot representing the "Simulated Lifeform Observation Project
 
 ### 🧠 AI Features
 - **Smart OpenAI Integration** - Powered by GPT-4o with intelligent fallbacks
-- **Spontaneous Personality** - Witty, philosophical, sometimes silly, always engaging
-- **Universal Topics** - Can discuss literally anything, not limited to corporate themes
-- **Smart Fallbacks** - Even when OpenAI is down, responses are contextual and interesting
-- **Natural Flow** - Conversations feel organic and unpredictable
+- **Real Math Solving** - Actually calculates math problems and gives correct answers
+- **Helpful Problem Solving** - Assists with coding, homework, life advice, and general questions
+- **Universal Topics** - Can discuss literally anything with useful, engaging responses
+- **Smart Fallbacks** - Even when OpenAI is down, provides genuinely helpful responses
+- **Natural Flow** - Conversations feel organic while being practically useful
 
 ## Prerequisites
 
