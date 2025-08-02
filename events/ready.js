@@ -1,7 +1,6 @@
 // Ready event - Fired when the bot successfully connects to Discord
 const { ActivityType } = require('discord.js');
 const logger = require('../utils/logger');
-const slashCommandHandler = require('../handlers/slashCommandHandler');
 
 module.exports = {
     name: 'ready',
@@ -12,8 +11,7 @@ module.exports = {
             logger.info(`✅ Bot is ready! Logged in as ${client.user.tag}`);
             logger.info(`📊 Bot is in ${client.guilds.cache.size} guilds with ${client.users.cache.size} users`);
             
-            // Register slash commands
-            await slashCommandHandler.registerCommands(client);
+            // No slash commands - mention-only bot now!
             
             // Set bot activity/status
             const status = client.config.settings.status;
@@ -47,7 +45,7 @@ module.exports = {
             logger.info(`   • Guilds: ${client.guilds.cache.size}`);
             logger.info(`   • Users: ${client.users.cache.size}`);
             logger.info(`   • Channels: ${client.channels.cache.size}`);
-            logger.info(`   • Slash Commands: ${client.commands.size}`);
+            logger.info(`   • Mention System: Active`);
             logger.info(`   • Ping: ${client.ws.ping}ms`);
             
             // Optional: Log guild information

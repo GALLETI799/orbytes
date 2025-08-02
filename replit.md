@@ -6,13 +6,13 @@ This is a sarcastic Discord bot representing the "Simulated Lifeform Observation
 
 ## Recent Changes (August 2025)
 
-### Major Update: AI-Powered Smart Chatbot (August 2025)
-- **Complete System Overhaul**: Removed prefix commands, implemented slash commands and mention system
+### Major Update: AI-Powered Mention-Only Chatbot (August 2025)
+- **Complete System Overhaul**: Removed ALL command systems, pure mention-based interaction
 - **OpenAI Integration**: Added GPT-4o integration for intelligent, contextual responses
-- **Natural Conversations**: Users can @mention the bot for smart AI-powered chats
-- **Slash Commands**: `/ask` and `/chat` commands for structured interactions
+- **Mention-Only System**: Users simply @mention the bot for natural conversations
+- **No Commands**: Eliminated slash commands for simplicity - just mention and chat
 - **Maintained Personality**: S.L.O.P CORP sarcastic character preserved in AI responses
-- **Real Intelligence**: Bot can now answer any question while staying in character
+- **Real Intelligence**: Bot answers any question naturally while staying in character
 
 ## User Preferences
 
