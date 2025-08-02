@@ -49,7 +49,7 @@ module.exports = {
             logger.info(`   • Ping: ${client.ws.ping}ms`);
             
             // Optional: Log guild information
-            if (client.config.settings.logCommands) {
+            if (client.config.settings.logMentions) {
                 logger.info('🏠 Connected Guilds:');
                 client.guilds.cache.forEach(guild => {
                     logger.info(`   • ${guild.name} (${guild.memberCount} members) - ID: ${guild.id}`);

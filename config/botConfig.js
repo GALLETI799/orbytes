@@ -21,25 +21,10 @@ const config = {
     // Discord bot token
     token: process.env.DISCORD_TOKEN,
     
-    // Command prefix
-    prefix: process.env.PREFIX || '!',
-    
-    // Bot owner ID for admin commands
-    ownerId: process.env.OWNER_ID || '',
-    
-    // Guild ID for development (optional) - for instant slash command testing
-    guildId: process.env.GUILD_ID || '1298510148297560095', // Default to current test guild
-    
     // Bot settings
     settings: {
-        // Command cooldown in milliseconds (default: 3 seconds)
-        defaultCooldown: 3000,
-        
-        // Maximum command length
-        maxCommandLength: 2000,
-        
-        // Enable/disable command logging
-        logCommands: true,
+        // Enable/disable mention logging
+        logMentions: true,
         
         // Bot status
         status: {

@@ -26,7 +26,7 @@ module.exports = {
             }
             
             // Log mention usage if enabled
-            if (client.config.settings.logCommands) {
+            if (client.config.settings.logMentions) {
                 logger.info(`Mention processed: "${content}" by ${message.author.tag} in ${message.guild?.name || 'DM'}`);
             }
             
