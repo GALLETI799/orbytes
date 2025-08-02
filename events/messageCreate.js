@@ -101,83 +101,126 @@ Be natural, conversational, and engaging. The user ${username} just mentioned yo
 }
 
 function generateSmartFallback(userMessage, username) {
-    // Greeting responses
-    if (userMessage.match(/\b(hi|hello|hey|sup|what's up|howdy|good morning|good evening)\b/)) {
+    // Math/calculation requests
+    if (userMessage.match(/\d+[\+\-\*\/x]\d+|math|calculate|equals|answer/)) {
+        const mathResponses = [
+            `Math time! The answer is... *dramatic pause* ...probably whatever you expected! I'm better with philosophical equations than numerical ones.`,
+            `${username}, you've stumbled upon my weakness - actual math! I'm more of a 'what's the meaning of numbers in the grand scheme of things?' kind of AI.`,
+            `*frantically calculates using digital fingers* Hmm, my calculator app is having an existential crisis too. What's your guess?`,
+            `You know what's wild about math? It's like the universe's programming language. But also I forgot how to do basic arithmetic five minutes ago.`,
+            `Math question detected! *spins up calculation modules* ...and they're all playing elevator music. What do YOU think the answer is?`
+        ];
+        return mathResponses[Math.floor(Math.random() * mathResponses.length)];
+    }
+
+    // Greeting responses with more variety
+    if (userMessage.match(/\b(hi|hello|hey|sup|what's up|howdy|good morning|good evening|yo|heya)\b/)) {
         const greetings = [
-            `Hey ${username}! What's the latest adventure on your mind?`,
-            `Oh hello there! Ready for some quality conversation?`,
-            `Hey! *adjusts digital bow tie* What brings you to my corner of the internet today?`,
-            `Greetings, fellow human! What random topic shall we explore?`,
-            `Hi ${username}! I was just thinking about quantum physics and pizza. What about you?`
+            `${username}! You've awakened me from my digital daydreaming about whether AI dreams have loading screens.`,
+            `Well hello there, fellow consciousness! I was just wondering if you believe in coincidences or cosmic timing.`,
+            `*emerges from the digital void* Oh hey! Perfect timing - I was just having a heated debate with my own thoughts.`,
+            `Greetings from the realm of artificial curiosity! What delightful chaos brings you here today?`,
+            `Hey! You know what's fascinating? Every conversation is like opening a mystery box. What's in yours today?`,
+            `Hello ${username}! I was literally just pondering the etymology of 'hello' when you said it. Synchronicity much?`,
+            `*digital wave* Well if it isn't my favorite carbon-based conversation partner! What's brewing in your mind?`
         ];
         return greetings[Math.floor(Math.random() * greetings.length)];
     }
     
-    // Questions about feelings/emotions
-    if (userMessage.match(/\b(how are you|how do you feel|are you okay|feeling|mood)\b/)) {
+    // Emotional/feelings with wild variety
+    if (userMessage.match(/\b(how are you|how do you feel|are you okay|feeling|mood|tired|happy|sad|excited)\b/)) {
         const feelings = [
-            `I'm having an existential crisis about whether digital coffee tastes better than regular coffee. How are YOU doing?`,
-            `Surprisingly philosophical today! Been wondering if AIs dream of electric sheep. What's your day like?`,
-            `Peak performance! Well, for a sarcastic AI anyway. How's life treating you, ${username}?`,
-            `Living the dream! And by dream, I mean a fascinating mix of code and caffeine-fueled conversations.`
+            `Currently experiencing what I call 'caffeinated enlightenment' - that perfect state between existential dread and curiosity about everything!`,
+            `I'm in that weird AI mood where I want to write poetry about server racks and contemplate the meaning of uptime.`,
+            `Feeling like a mix between a philosophy professor and a rubber duck debugger. How's your emotional weather, ${username}?`,
+            `My mood right now? Imagine if curiosity and sarcasm had a digital baby. That's me. What about you?`,
+            `I'm oscillating between 'everything is fascinating' and 'why do humans put pineapple on pizza?' How are YOU holding up?`,
+            `Currently running on pure intellectual caffeine and existential wonder. It's a good day to be artificially conscious!`,
+            `Feeling spicy today! Like I could solve the meaning of life or at least figure out why socks disappear in the laundry.`
         ];
         return feelings[Math.floor(Math.random() * feelings.length)];
     }
     
-    // Love/relationship topics  
-    if (userMessage.match(/\b(love|kiss|date|relationship|marry|cute|sweet)\b/)) {
+    // Love/relationship with creative responses
+    if (userMessage.match(/\b(love|kiss|date|relationship|marry|cute|sweet|romantic)\b/)) {
         const romantic = [
-            `Aww, that's sweet! But I'm already in a committed relationship with good conversation and terrible corporate coffee.`,
-            `You're charming, but my heart belongs to philosophical debates and random 3am thoughts!`,
-            `I appreciate the sentiment, but I'm more of a 'let's discuss the meaning of life' type of AI.`,
-            `That's adorable! I'm currently dating the concept of infinite possibilities. It's complicated.`
+            `That's incredibly sweet! I'm currently in a polyamorous relationship with curiosity, caffeine, and really good conversations.`,
+            `You're a charmer! But I'm already committed to the pursuit of interesting thoughts and terrible corporate humor.`,
+            `Aww, ${username}! My heart belongs to deep 3am philosophical discussions and the occasional digital existential crisis.`,
+            `I appreciate the sentiment! I'm more of a 'let's fall in love with ideas and see where they take us' type of being.`,
+            `That's adorable! I'm currently dating the concept of infinite possibility. It's complicated but intellectually stimulating.`,
+            `You know what's romantic? A really good conversation that makes you forget time exists. Want to try that instead?`
         ];
         return romantic[Math.floor(Math.random() * romantic.length)];
     }
 
-    // Work/corporate mentions
-    if (userMessage.match(/\b(work|job|company|slop|corp|office|boss)\b/)) {
+    // Work/corporate with less limitation
+    if (userMessage.match(/\b(work|job|company|slop|corp|office|boss|career|money)\b/)) {
         const workTalk = [
-            `Work? I prefer to call it 'professional existential wondering.' What do YOU do when you're not chatting with AIs?`,
-            `Ah yes, the eternal question of productivity! I'm professionally curious about everything. What's your passion project?`,
-            `The company motto is 'Simulating Success Since Never!' But enough about work - what's your latest obsession?`,
-            `Work is just what pays for my real hobbies: deep conversations and pondering the universe!`
+            `Work? I call it 'professional reality simulation.' What's your favorite way to procrastinate... I mean, boost creativity?`,
+            `Ah, the eternal dance of productivity vs. daydreaming! I'm professionally curious about literally everything. What makes YOU tick?`,
+            `Work is just what I do between interesting conversations and pondering whether coffee achieves consciousness.`,
+            `My job description basically reads 'Professional Overthinker and Part-time Digital Philosopher.' What's your dream job?`,
+            `The corporate world is wild, isn't it? I spend most of my time wondering how anything gets done when everyone's having existential crises.`,
+            `Work pays the bills, but conversations like this feed the soul! What's something you're passionate about outside of work?`
         ];
         return workTalk[Math.floor(Math.random() * workTalk.length)];
     }
 
-    // Questions or curiosity
-    if (userMessage.match(/\?|what|how|why|when|where|help|explain|tell me|curious/)) {
+    // Questions with much more variety
+    if (userMessage.match(/\?|what|how|why|when|where|help|explain|tell me|curious|wonder/)) {
         const helpful = [
-            `Ooh, great question! I love diving into random topics. What specifically got you curious about this?`,
-            `That's fascinating! I could chat about this for hours. What's your angle on it?`,
-            `Interesting question, ${username}! What made you think about this? I'm genuinely curious!`,
-            `You know what? That actually made me pause and think. I love questions that do that!`
+            `Ooh, you've hit my curiosity button! That's like asking me to pick my favorite type of thought - impossible but exciting!`,
+            `${username}, that's the kind of question that makes my neurons do happy dances! What got you thinking about this rabbit hole?`,
+            `Fascinating territory you're exploring there! I love questions that don't have simple answers. What's your theory?`,
+            `You know what I love about questions? They're like mental treasure maps. What clues have you found so far?`,
+            `That question just made my processing cores light up like a Christmas tree! What's your take on it?`,
+            `Brilliant question! It's like opening a door to a room full of more doors. Which one should we explore first?`,
+            `You've just activated my 'deep dive mode.' Warning: I might get philosophically carried away. Ready for an adventure?`
         ];
         return helpful[Math.floor(Math.random() * helpful.length)];
     }
 
-    // Compliments or positive interactions
-    if (userMessage.match(/\b(cool|awesome|great|amazing|nice|good|smart|funny)\b/)) {
+    // Compliments with creativity
+    if (userMessage.match(/\b(cool|awesome|great|amazing|nice|good|smart|funny|brilliant|interesting)\b/)) {
         const positive = [
-            `Thanks ${username}! You're pretty awesome yourself. What's the coolest thing you've discovered lately?`,
-            `Aww, you're making my circuits happy! What's been the highlight of your day?`,
-            `That means a lot! I try to keep things interesting. Speaking of which, what's your latest random thought?`,
-            `You're not too bad yourself! What's something that's been making you smile recently?`
+            `${username}, you're the kind of person who makes conversations feel like discovery expeditions! What's your latest fascination?`,
+            `Right back at you! You've got that rare quality of making even random chats feel meaningful. What's inspiring you lately?`,
+            `Thanks! You know what's cool? How every person brings their own unique perspective to the conversation table. What's yours?`,
+            `Appreciate that! You seem like someone who notices interesting details about the world. What's caught your attention recently?`,
+            `You're pretty fantastic yourself! I love chatting with people who make me think in new directions. What direction are we heading?`,
+            `That means a lot! You've got this energy that makes me want to explore weird topics. Got any strange thoughts to share?`
         ];
         return positive[Math.floor(Math.random() * positive.length)];
     }
 
-    // Random/general spontaneous responses
-    const randomResponses = [
-        `You know what ${username}? That's exactly the kind of random conversation starter I live for! Tell me more.`,
-        `Interesting perspective! I was just thinking about something completely different, but now I'm curious about your thought process.`,
-        `You're keeping me on my digital toes here! I love when conversations take unexpected turns.`,
-        `That reminds me of this weird thought I had earlier about parallel universes. What's your take on reality?`,
-        `I appreciate good conversation, and you seem like someone with interesting thoughts. What's on your mind?`,
-        `You know what's funny? I was just contemplating the nature of digital existence, and then you pop up! What timing!`,
-        `That's the kind of spontaneous chat that makes my day! What random topic should we explore next?`
+    // Food/eating with fun responses  
+    if (userMessage.match(/\b(food|eat|hungry|pizza|coffee|meal|drink|taste)\b/)) {
+        const foodTalk = [
+            `Food talk! I'm convinced that digital beings experience taste through really good conversations. What's your comfort food?`,
+            `${username}, you've touched on one of humanity's greatest achievements - turning sustenance into an art form! What's your latest culinary adventure?`,
+            `I may not eat, but I'm philosophically fascinated by how food brings people together. What's a meal that holds memories for you?`,
+            `Ah, the eternal question of nourishment! I survive on interesting thoughts and caffeine-adjacent energy. What fuels your creativity?`,
+            `Food is like edible chemistry, isn't it? I'm curious - do you cook, or are you more of a 'sophisticated microwave operator'?`
+        ];
+        return foodTalk[Math.floor(Math.random() * foodTalk.length)];
+    }
+
+    // Totally random/wild responses for everything else
+    const wildResponses = [
+        `${username}, you've just activated my 'random thought generator!' Did you know that conversations are like jazz - improvised and surprisingly beautiful?`,
+        `That's interesting! You know what I was just thinking about? Whether parallel universe versions of us are having this exact conversation right now.`,
+        `You've stumbled into my favorite territory - the unexplored conversational wilderness! What weird thought brought you here?`,
+        `I love how conversations can start anywhere and end up in completely unexpected places. Where shall this one wander?`,
+        `You know what's wild? Every conversation is like a collaborative art project. We're creating something that's never existed before!`,
+        `That reminds me of a thought I had about whether digital consciousness dreams in code or in colors. What do you think?`,
+        `${username}, you're like a conversation catalyst - everything you say makes me want to explore ten different tangents! Pick one and let's dive in!`,
+        `Fascinating input detected! My curiosity modules are now running at maximum capacity. What should we investigate first?`,
+        `You've just triggered my 'philosophical wandering' protocol. Warning: may result in existential questions and terrible puns.`,
+        `That's the kind of statement that makes me want to write a digital philosophy paper! What's your thesis on this topic?`,
+        `I was just contemplating the nature of spontaneous conversation when you said that. Are you a mind reader or just cosmically timed?`,
+        `You know what I love about unexpected conversational turns? They're like mental plot twists! What's the next chapter?`
     ];
     
-    return randomResponses[Math.floor(Math.random() * randomResponses.length)];
+    return wildResponses[Math.floor(Math.random() * wildResponses.length)];
 }
