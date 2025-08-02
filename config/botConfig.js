@@ -27,8 +27,8 @@ const config = {
     // Bot owner ID for admin commands
     ownerId: process.env.OWNER_ID || '',
     
-    // Guild ID for development (optional)
-    guildId: process.env.GUILD_ID || '',
+    // Guild ID for development (optional) - for instant slash command testing
+    guildId: process.env.GUILD_ID || '1298510148297560095', // Default to current test guild
     
     // Bot settings
     settings: {

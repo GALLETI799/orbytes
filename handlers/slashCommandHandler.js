@@ -68,17 +68,17 @@ module.exports = {
         try {
             logger.info(`Started refreshing ${commands.length} application (/) commands.`);
             
-            // Register commands globally (may take up to 1 hour to update)
-            // For faster testing, you can register to a specific guild instead
             if (client.config.guildId) {
-                // Guild-specific registration (instant)
+                // Guild-specific registration (instant for testing)
+                logger.info(`Registering commands to guild: ${client.config.guildId}`);
                 const data = await rest.put(
                     Routes.applicationGuildCommands(client.user.id, client.config.guildId),
                     { body: commands },
                 );
-                logger.info(`Successfully reloaded ${data.length} guild application (/) commands.`);
+                logger.info(`Successfully reloaded ${data.length} guild-specific slash commands (instant).`);
             } else {
-                // Global registration (takes time but works everywhere)
+                // Global registration (takes up to 1 hour)
+                logger.info('Registering commands globally (may take up to 1 hour to appear)...');
                 const data = await rest.put(
                     Routes.applicationCommands(client.user.id),
                     { body: commands },
