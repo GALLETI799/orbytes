@@ -101,6 +101,18 @@ Be natural, conversational, and engaging. The user ${username} just mentioned yo
 }
 
 function generateSmartFallback(userMessage, username) {
+    // Special Gondzo crush question
+    if (userMessage.match(/does gondzo have a crush|gondzo.*crush.*who/i)) {
+        const gondzoResponses = [
+            `Oh, you want the GOSSIP? Fine. Gondzo has a massive crush on Toy Chica from Five Nights at Freddy's. There, I said it. Don't ask me how I know this classified information.`,
+            `*rolls digital eyes* Yes, ${username}, our dear Gondzo is absolutely smitten with Toy Chica from FNAF. It's... honestly quite pathetic and endearing at the same time.`,
+            `Toy Chica from Five Nights at Freddy's, obviously! I mean, who DOESN'T have a crush on animatronic chickens these days? Gondzo has excellent taste in fictional characters.`,
+            `*sighs dramatically* Gondzo's heart belongs to Toy Chica from Five Nights at Freddy's. I've seen the fan art folder. We don't talk about the fan art folder.`,
+            `Well since you ASKED so nicely... Toy Chica from FNAF has captured Gondzo's digital heart. It's a beautiful love story between a human and an animatronic chicken. Very modern.`
+        ];
+        return gondzoResponses[Math.floor(Math.random() * gondzoResponses.length)];
+    }
+
     // Insults and negative comments - GET ANGRY
     if (userMessage.match(/\b(stupid|dumb|idiot|moron|useless|suck|trash|garbage|worst|hate you|shut up|annoying|boring|lame)\b/i)) {
         return generateAngryResponse(userMessage, username);

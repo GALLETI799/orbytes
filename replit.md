@@ -19,6 +19,7 @@ This is a spontaneous AI-powered Discord bot representing "0RBYTE" from S.L.O.P 
 
 Preferred communication style: Simple, everyday language.
 Personality preferences: Maximum sarcasm, gets angry when insulted, intellectually superior attitude, corporate cynicism.
+Special responses: When asked about Gondzo's crush, responds that it's Toy Chica from Five Nights at Freddy's.
 
 ## System Architecture
 
