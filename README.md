@@ -20,15 +20,17 @@ A sarcastic Discord bot representing the "Simulated Lifeform Observation Project
 - ✅ **Logging System** - File and console logging with different levels
 
 ### 🎯 How to Use
-- **@mention the bot** - Simply mention @0RBYTE - S.L.O.P in any message for intelligent AI responses
-- **Natural Conversations** - Ask anything: work questions, casual chat, company info, or random topics
-- **No Commands Needed** - Just talk to the bot like you would a coworker
+- **@mention the bot** - Simply mention @0RBYTE - S.L.O.P in any message
+- **Talk About ANYTHING** - Hobbies, life questions, random thoughts, philosophy, jokes, or work stuff
+- **Spontaneous Conversations** - Every response is unique and engaging
+- **No Commands** - Just natural conversation like chatting with a friend
 
 ### 🧠 AI Features
-- **Real OpenAI Integration** - Powered by GPT-4o for intelligent responses
-- **S.L.O.P CORP Personality** - Maintains sarcastic corporate character in all responses
-- **Natural Conversations** - Simple mention system, no rigid command structure
-- **Context Awareness** - Remembers it's a tired AI working at a dystopian corporation
+- **Smart OpenAI Integration** - Powered by GPT-4o with intelligent fallbacks
+- **Spontaneous Personality** - Witty, philosophical, sometimes silly, always engaging
+- **Universal Topics** - Can discuss literally anything, not limited to corporate themes
+- **Smart Fallbacks** - Even when OpenAI is down, responses are contextual and interesting
+- **Natural Flow** - Conversations feel organic and unpredictable
 
 ## Prerequisites
 

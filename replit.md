@@ -2,17 +2,17 @@
 
 ## Overview
 
-This is a sarcastic Discord bot representing the "Simulated Lifeform Observation Project Corporation" - a fictional company from a Roblox game. Built with Node.js and Discord.js v14, the bot acts as a witty, tired AI assistant that provides hilariously unhelpful information about S.L.O.P CORP's questionable operations. The bot features a modular command system with dynamic loading, event handling, cooldown management, and comprehensive logging, all wrapped in a dystopian corporate personality.
+This is a spontaneous AI-powered Discord bot representing "0RBYTE" from S.L.O.P CORP - a fictional company from a Roblox game. Built with Node.js and Discord.js v14, the bot acts as a witty, conversational AI that can discuss ANY topic naturally, not just corporate stuff. It features intelligent OpenAI integration with smart fallbacks, natural conversation flow, and a spontaneous personality that makes every chat engaging and unpredictable.
 
 ## Recent Changes (August 2025)
 
-### Major Update: AI-Powered Mention-Only Chatbot (August 2025)
-- **Complete System Overhaul**: Removed ALL command systems, pure mention-based interaction
-- **OpenAI Integration**: Added GPT-4o integration for intelligent, contextual responses
-- **Mention-Only System**: Users simply @mention the bot for natural conversations
-- **No Commands**: Eliminated slash commands for simplicity - just mention and chat
-- **Maintained Personality**: S.L.O.P CORP sarcastic character preserved in AI responses
-- **Real Intelligence**: Bot answers any question naturally while staying in character
+### Major Update: Spontaneous AI Conversationalist (August 2025)
+- **Complete System Overhaul**: Pure mention-based interaction, no commands whatsoever
+- **Universal Topics**: Can discuss ANY topic naturally - hobbies, life, philosophy, random thoughts
+- **Smart Fallback System**: Intelligent responses even when OpenAI quota is exceeded
+- **Spontaneous Personality**: Witty, unpredictable, engaging - every conversation is unique
+- **Context-Aware Responses**: Smart fallbacks based on message content and user patterns
+- **No Topic Limitations**: Not restricted to corporate themes - truly conversational AI
 
 ## User Preferences
 
